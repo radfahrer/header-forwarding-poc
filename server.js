@@ -24,6 +24,8 @@ app.use('*', (req, res, next) => {
 	const secretHeader = req.get('my-secret-header');
 	if(secretHeader) {
 		req.app.locals.axios.defaults.headers.common['my-secret-header'] = secretHeader;
+	} else {
+		delete req.app.locals.axios.defaults.headers.common['my-secret-header'];
 	}
 	next();
 });
@@ -43,4 +45,4 @@ app.get('/', (req, res) => {
 		});
 });
 
-app.listen(2018, () => console.log('Example app listening on port 2018!'));
+app.listen(2018, () => console.log('POC on port 2018!'));
